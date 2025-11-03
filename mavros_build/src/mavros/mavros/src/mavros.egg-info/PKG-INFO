@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: mavros
+Version: 1.20.1
+Summary: MAVROS -- MAVLink extendable communication node for ROS with proxy for Ground Control Station.
+Home-page: http://wiki.ros.org/mavros
+Author: Vladimir Ermakov
+Author-email: vooon341@gmail.com
+Maintainer: Vladimir Ermakov
+Maintainer-email: vooon341@gmail.com
+License: GPLv3, LGPLv3, BSD

@@ -1,0 +1,33 @@
+# waypoints.yaml
+# 定义无人机巡航的航点列表
+
+# 使用私有命名空间，这样参数名就是 /your_node_name/waypoints
+waypoints:
+  - latitude: 47.39783    # 第一个航点 (会被设为 is_current=true)
+    longitude: 8.54616
+    altitude: 3.0       # 相对起飞点高度 (米)
+    delay: 5.0          # 在此航点停留时间 (秒)
+    # yaw: 90.0         # 可选：期望航向角 (度)，NaN表示保持当前或自动
+
+  - latitude: 47.39687
+    longitude: 8.54655
+    altitude: 4.0
+    delay: 10.0         # 在此航点停留10秒
+
+  - latitude: 47.39600
+    longitude: 8.54700
+    altitude: 5.0
+    # delay: 0.0        # 如果省略delay，代码中默认为0
+
+  - latitude: 47.39700
+    longitude: 8.54750
+    altitude: 3.5
+    delay: 3.0
+    # yaw: 270.0
+
+# 可以根据需要添加更多航点
+# - latitude: ...
+#   longitude: ...
+#   altitude: ...
+#   delay: ...
+#   yaw: ...

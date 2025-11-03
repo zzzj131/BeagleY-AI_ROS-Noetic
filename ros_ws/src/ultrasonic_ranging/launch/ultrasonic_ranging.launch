@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Publish starrobot odometry -->
+    <node pkg="ultrasonic_ranging" name="ultrasonic_ranging" type="ultrasonic_ranging" output="screen">
+		<param name="port" value="/dev/ultrasonic" />
+		<param name="SonarPubName" value="ultrasonic" />
+		<param name="freq" value="15" />
+    </node>
+</launch>
+
+
