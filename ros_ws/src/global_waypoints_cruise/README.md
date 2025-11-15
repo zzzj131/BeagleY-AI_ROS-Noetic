@@ -1,6 +1,6 @@
 # global_waypoints_cruise
 
-这是一个用于无人机/机器人在全局（GPS）航点上执行巡航任务的 ROS Noetic 包，包含：
+这是一个用于无人机在全局（GPS）航点上执行巡航任务的 ROS Noetic 包，包含：
 
 - 航点加载器（从 MQTT/远端服务获取航点并写入参数服务器）：`waypoints_loader_node`。
 - 航点巡航执行器（读取参数服务器上的航点，上传给飞控 via MAVROS 并执行）：`global_waypoints_cruise_node`。
