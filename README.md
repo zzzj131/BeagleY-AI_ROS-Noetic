@@ -2,8 +2,11 @@
 
 这是一个基于ROS-Noetic的机器人开发工作空间，专门为BeagleY-AI开发板环境设计，集成了导航、视觉识别、MAVROS控制等多个功能模块。
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6118b4dfd6b29cfdfa991ad745455c11f751545a
 ## 功能模块
 
 ### 1. 飞行控制
@@ -72,22 +75,6 @@ source devel/setup.bash
 - 控制相关包
 - 硬件驱动包
 - 我完成的是`global_waypoints_cruise`功能包，其他功能包是超维空间给的
-## 使用说明
-
-### 启动机器人基础功能
-```bash
-roslaunch robot_bringup robot_bringup.launch
-```
-
-### 启动导航功能
-```bash
-roslaunch navigation_multi_goals navigation.launch
-```
-
-### 启动视觉识别
-```bash
-roslaunch robot_vision vision_recognition.launch
-```
 
 ## 常见问题
 
