@@ -70,22 +70,6 @@ source devel/setup.bash
 - 控制相关包
 - 硬件驱动包
 - 我完成的是`global_waypoints_cruise`功能包，其他功能包是超维空间给的
-## 使用说明
-
-### 启动机器人基础功能
-```bash
-roslaunch robot_bringup robot_bringup.launch
-```
-
-### 启动导航功能
-```bash
-roslaunch navigation_multi_goals navigation.launch
-```
-
-### 启动视觉识别
-```bash
-roslaunch robot_vision vision_recognition.launch
-```
 
 ## 常见问题
 
