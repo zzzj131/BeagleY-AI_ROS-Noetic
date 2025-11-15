@@ -1,4 +1,3 @@
-````markdown
 # global_waypoints_cruise
 
 这是一个用于无人机/机器人在全局（GPS）航点上执行巡航任务的 ROS Noetic 包，包含：
@@ -12,8 +11,8 @@
 
 ## 先决条件
 
-- Ubuntu 20.04 + ROS Noetic（建议已安装 `ros-noetic-desktop-full`）。
-- 安装系统依赖（示例，Ubuntu）：
+-  ROS Noetic
+- 安装系统依赖（示例，Ubuntu，本项目是在Debian 12上编译完成）：
 
 ```bash
 sudo apt update
@@ -170,5 +169,4 @@ waypoints:
 - 若串口设备行尾或编码不同，请在设备端或通过 `csv_delimiter` 配合清洗数据，确保字段能被正确切分与转换。
 - 如果串口不是必需，可将串口参数留空或在 launch 中不传入；节点在无法打开串口时会继续运行 GPS 上报功能，但环境数据将不可用。
 
-如需，我可以把 README 中的串口参数示例加入 `launch/mission.launch` 并提交示例启动文件，或者为 CSV 解析添加单元测试以便本地验证解析逻辑。
 
