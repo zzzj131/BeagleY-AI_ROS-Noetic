@@ -1,7 +1,9 @@
 # BeagleY-AI ROS工作空间
 
 这是一个基于ROS-Noetic的机器人开发工作空间，专门为BeagleY-AI开发板环境设计，集成了导航、视觉识别、MAVROS控制等多个功能模块。
-别问为什么用BeagleY-AI。。。物联网TI赛道的要求
+
+
+
 ## 功能模块
 
 ### 1. 飞行控制
