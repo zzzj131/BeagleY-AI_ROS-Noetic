@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>your_package_name</name> <!-- *** 修改为你的包名 *** -->
+  <name>global_waypoints_cruise</name> 
   <version>0.1.0</version>
   <description>
     ROS node to execute MAVROS waypoint missions defined via ROS parameters.
@@ -8,11 +8,11 @@
   </description>
 
   <!-- 维护者信息 -->
-  <maintainer email="you@example.com">Your Name</maintainer> <!-- *** 修改为你的信息 *** -->
+  <maintainer email="jinzhang1310@163.com">jinzhang1310</maintainer> 
 
   <!-- 许可证 -->
-  <license>BSD</license> <!-- 或者 MIT, Apache 2.0 等 -->
-
+  <license>BSD</license>
+  
   <!-- 构建工具依赖 -->
   <buildtool_depend>catkin</buildtool_depend>
 
@@ -20,7 +20,8 @@
   <build_depend>roscpp</build_depend>       <!-- ROS C++ 核心库 -->
   <build_depend>mavros_msgs</build_depend>   <!-- MAVROS 消息和服务定义 -->
   <build_depend>message_generation</build_depend> <!-- 需要这个来处理 mavros_msgs -->
-
+  <build_depend>std_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
   <!-- 构建导出依赖 (如果其他包依赖本包，它们需要这些) -->
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>mavros_msgs</build_export_depend>
@@ -30,8 +31,9 @@
   <exec_depend>mavros</exec_depend>         <!-- 实际运行时需要 MAVROS 节点 -->
   <exec_depend>mavros_msgs</exec_depend>
   <exec_depend>message_runtime</exec_depend>  <!-- 需要这个来使用 mavros_msgs -->
-
-  <!-- 测试依赖 (如果写了测试) -->
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <!-- 测试依赖 -->
   <!-- <test_depend>gtest</test_depend> -->
 
   <!-- 可选：文档工具依赖 -->

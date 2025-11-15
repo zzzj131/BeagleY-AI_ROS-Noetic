@@ -1,12 +1,21 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(your_package_name) # *** 修改为你的包名 ***
+project(global_waypoints_cruise) 
 
 ## 查找 Catkin 宏和依赖包
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   mavros_msgs
+  std_msgs
+  sensor_msgs
   message_generation # 即使本包不生成消息，依赖 mavros_msgs 也需要它
+  serial
 )
+
+# 查找所需的其他库
+find_package(yaml-cpp REQUIRED)
+find_library(MOSQUITTO_LIBRARY mosquitto REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(JSONCPP jsoncpp REQUIRED)
 
 ## 处理消息/服务/动作 (如果你的包自己定义了这些)
 ## 在这个例子中，我们只 *使用* mavros_msgs，所以不需要下面的 add_message_files 等
@@ -31,7 +40,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include        # 如果有 include 文件夹放头文件
 #  LIBRARIES ${PROJECT_NAME}   # 如果构建了库
-  CATKIN_DEPENDS roscpp mavros_msgs message_runtime # 运行时依赖
+  CATKIN_DEPENDS roscpp mavros_msgs message_runtime std_msgs sensor_msgs# 运行时依赖
 #  DEPENDS system_lib          # 非 Catkin 的系统依赖
 )
 
@@ -39,6 +48,8 @@ catkin_package(
 include_directories(
 # 'include' # 如果有 include 文件夹
   ${catkin_INCLUDE_DIRS}
+  ${YAML_CPP_INCLUDE_DIR}
+  ${JSONCPP_INCLUDE_DIRS}
 )
 
 ## 定义可执行文件
@@ -54,7 +65,7 @@ target_link_libraries(global_waypoints_cruise_node
   ${catkin_LIBRARIES}
 )
 
-## 安装规则 (可选，但推荐)
+## 安装规则 
 # 安装可执行文件
 install(TARGETS global_waypoints_cruise_node
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
@@ -62,12 +73,12 @@ install(TARGETS global_waypoints_cruise_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION} # 或者用 ${CATKIN_GLOBAL_BIN_DESTINATION}
 )
 
-# 安装 launch 文件 (假设你有一个 launch 文件夹)
+# 安装 launch 文件 
 install(DIRECTORY launch/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
 )
 
-# 安装 config 文件 (假设你有一个 config 文件夹放 waypoints.yaml)
+# 安装 config 文件 
 install(DIRECTORY config/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/config
 )
@@ -78,3 +89,20 @@ install(DIRECTORY config/
 #   FILES_MATCHING PATTERN "*.h"
 #   PATTERN ".svn" EXCLUDE
 # )
+
+# 编译航点加载器节点
+add_executable(waypoints_loader_node src/waypoints_loader_node.cpp)
+target_link_libraries(waypoints_loader_node
+  ${catkin_LIBRARIES}
+  ${YAML_CPP_LIBRARIES}
+  ${MOSQUITTO_LIBRARY}
+  ${JSONCPP_LIBRARIES}
+)
+
+# 编译GPS记录器节点
+add_executable(drone_gps_logger_node src/drone_gps_logger_node.cpp)
+target_link_libraries(drone_gps_logger_node
+  ${catkin_LIBRARIES}
+  ${MOSQUITTO_LIBRARY}
+  ${JSONCPP_LIBRARIES}
+)

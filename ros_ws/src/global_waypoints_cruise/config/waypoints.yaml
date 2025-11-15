@@ -1,7 +1,7 @@
 # waypoints.yaml
 # 定义无人机巡航的航点列表
 
-# 使用私有命名空间，这样参数名就是 /your_node_name/waypoints
+# 使用私有命名空间，这样参数名就是 /global_waypoints_cruise/waypoints
 waypoints:
   - latitude: 47.39783    # 第一个航点 (会被设为 is_current=true)
     longitude: 8.54616

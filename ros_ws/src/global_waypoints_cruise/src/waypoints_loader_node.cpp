@@ -3,8 +3,6 @@
 
 #include <ros/ros.h>
 #include <mosquitto.h>
-// #include <yaml-cpp/yaml.h> //不再需要YAML库进行设置
-// 可能仍用于其他目的，但不再用于YAML转换
 #include <string>
 #include <sstream> 
 #include <vector>
@@ -13,6 +11,7 @@
 #include <jsoncpp/json/json.h>  // 使用jsoncpp库
 #include <XmlRpcValue.h>
 
+#define HOST "192.168.137.1" 
 // 航点结构 (这个结构用于从JSON解析，是OK的)
 struct Waypoint {
     double latitude;
@@ -165,7 +164,7 @@ int main(int argc, char **argv) {
     // 使用 private_nh 获取参数，这样参数需要放在节点的私有命名空间下
     // 例如，在 launch 文件中用 <param name="mqtt_broker" value="..."/>
     ros::NodeHandle private_nh("~"); 
-    private_nh.param<std::string>("mqtt_broker", mqtt_broker, "192.168.31.81");
+    private_nh.param<std::string>("mqtt_broker", mqtt_broker, HOST);
     private_nh.param<int>("mqtt_port", mqtt_port, 8899);
     private_nh.param<std::string>("mqtt_topic_send", mqtt_topic_send, "ros/to/mysql");
     private_nh.param<std::string>("mqtt_topic_receive", mqtt_topic_receive, "mysql/to/ros"); // 读取了但没在 subscribe 时用

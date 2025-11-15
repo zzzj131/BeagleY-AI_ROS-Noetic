@@ -1,0 +1,32 @@
+<launch>
+
+    <!-- 不再直接从YAML加载参数 -->
+    <!-- <rosparam command="load" file="$(find global_waypoints_cruise)/config/waypoints.yaml" ns="global_waypoints_cruise" /> -->
+
+    <!-- 启动航点加载器节点 -->
+    <!-- 这个节点负责将航点数据加载到参数服务器的 /global_waypoints_cruise 命名空间下 -->
+    <!-- 请将 YOUR_LOADER_PACKAGE_NAME 替换为包含 waypoints_loader_node 的包名 -->
+    <!-- 如果加载器节点也在 global_waypoints_cruise 包中，则使用 pkg="global_waypoints_cruise" -->
+    <node name="waypoints_loader" pkg="global_waypoints_cruise" type="waypoints_loader_node" output="screen">
+        <!-- 如果 waypoints_loader_node 需要任何参数（例如，YAML文件的路径），可以在这里添加 -->
+        <!-- <param name="waypoint_file_path" value="$(find global_waypoints_cruise)/config/waypoints.yaml" /> -->
+    </node>
+
+    <!-- 启动你的航点巡航节点 -->
+    <!-- 它会从参数服务器的 /global_waypoints_cruise 命名空间读取航点 -->
+    <!-- (因为它使用了 private_nh("~") 并且节点名为 global_waypoints_cruise) -->
+    <node name="global_waypoints_cruise" pkg="global_waypoints_cruise" type="global_waypoints_cruise_node" output="screen">
+        <!-- 参数现在由 waypoints_loader_node 提供，所以这里不需要 <rosparam> 或 <param> 来设置航点 -->
+    </node>
+
+    <!-- 也可以在这里启动 MAVROS 节点，如果它没有在别处启动 -->
+    <!-- <include file="$(find mavros)/launch/px4.launch"> -->
+        <!-- <arg name="fcu_url" value="/dev/ttyACM0:921600" /> -->
+        <!-- <arg name="gcs_url" value="" /> -->
+        <!-- <arg name="tgt_system" value="1" /> -->
+        <!-- <arg name="tgt_component" value="1" /> -->
+        <!-- <arg name="log_output" value="screen" /> -->
+        <!-- <arg name="fcu_protocol" value="v2.0" /> -->
+    <!-- </include> -->
+
+</launch>
